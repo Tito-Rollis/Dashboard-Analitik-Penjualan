@@ -6,7 +6,7 @@ type SalesChartProps = {
     data: DataSales[];
 };
 
-export const SalesChart = (props: SalesChartProps) => {
+export const SalesChart = ({ type, data }: SalesChartProps) => {
     // interface ConvertData {
     //     date: string;
     //     revenueA: number;
@@ -57,7 +57,7 @@ export const SalesChart = (props: SalesChartProps) => {
 
     return (
         <ResponsiveContainer width="100%" height="80%">
-            <LineChart data={props.data}>
+            <LineChart data={data}>
                 <Line type="monotone" dataKey="sales" stroke="#8884d8" />
                 <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
                 <XAxis dataKey="date" />

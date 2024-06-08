@@ -6,19 +6,8 @@ export const FetchingHook = () => {
     const [data, setData] = useState<DataSales[]>([]);
 
     useEffect(() => {
-        GET_DATA().then((res) => setData(res.data));
+        GET_DATA().then((res) => setData(res.data.sort((a, b) => a.date.localeCompare(b.date))));
     }, []);
-
-    const getSalesRange = (start: string, end: string): DataSales[] => {
-        const startDate = new Date(start).getTime();
-        const endDate = new Date(end).getTime();
-
-        const salesRange = data.filter((item) => {
-            const itemFiltered = new Date(item.date).getTime();
-            return itemFiltered >= startDate && itemFiltered <= endDate;
-        });
-        return salesRange;
-    };
 
     const getTotalRevenue = (): number => {
         let total = 0;
@@ -48,5 +37,5 @@ export const FetchingHook = () => {
         }
     };
 
-    return { data, getTopProduct, getTotalRevenue, getTotalSales, getSalesRange };
+    return { data, getTopProduct, getTotalRevenue, getTotalSales, setData };
 };

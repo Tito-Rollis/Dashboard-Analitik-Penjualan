@@ -25,21 +25,21 @@
         },
         {
             "product": "Product A",
-            "date": "2023-10-02",
+            "date": "2023-02-10",
             "revenue": 50000,
             "sales": 150,
             "id": "3"
         },
         {
             "product": "Product B",
-            "date": "2023-21-02",
+            "date": "2023-02-21",
             "revenue": 100000,
             "sales": 300,
             "id": "4"
         },
         {
             "product": "Product A",
-            "date": "2023-25-02",
+            "date": "2023-02-25",
             "revenue": 10000,
             "sales": 250,
             "id": "5"

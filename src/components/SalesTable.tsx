@@ -1,65 +1,40 @@
-import {
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-    SortingState,
-    getSortedRowModel,
-    ColumnFiltersState,
-    getFilteredRowModel,
-} from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Input } from '@/components/ui/input';
 import { Calendar } from 'lucide-react';
 
-import { useRef, useState } from 'react';
 import { Button } from './ui/button';
 import { Label } from '@radix-ui/react-label';
 import { PopoverClose } from '@radix-ui/react-popover';
+import { TableHook } from '@/hooks/table';
+import { FormEvent } from 'react';
+import { DataSales } from '@/types/data/dataTypes';
 
-interface DataTableProps<TData, TValue> {
-    columns: TValue[];
-    data: TData[];
-}
+type SalesTableProps = {
+    data: DataSales[];
+    filter: (start: string, end: string) => void;
+};
 
-export const SalesTable = ({ data, columns }: DataTableProps<TData, TValue>) => {
-    const [sorting, setSorting] = useState<SortingState>([]);
-    const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-    const [startDateInput, setStartDateInput] = useState<string>('');
-    const [endDateInput, setEndDateInput] = useState<string>('');
-
-    const startDateInputRef = useRef<HTMLInputElement | null>(null);
-    const endDateInputRef = useRef<HTMLInputElement | null>(null);
-
-    const table = useReactTable({
-        data,
+export const SalesTable = ({ data, filter }: SalesTableProps) => {
+    const {
         columns,
-        getCoreRowModel: getCoreRowModel(),
-        onSortingChange: setSorting,
-        getSortedRowModel: getSortedRowModel(),
-        onColumnFiltersChange: setColumnFilters,
-        getFilteredRowModel: getFilteredRowModel(),
-        state: {
-            sorting,
-            columnFilters,
-        },
+        endDateHandle,
+        startDateHandle,
+        startDateInput,
+        endDateInput,
+        table,
+        endDateInputRef,
+        startDateInputRef,
+    } = TableHook({
+        data,
     });
 
-    const startDateHandle = () => {
-        if (startDateInputRef.current) {
-            setStartDateInput(startDateInputRef.current.value);
-        }
-    };
-    const endDateHandle = () => {
-        if (endDateInputRef.current) {
-            setEndDateInput(endDateInputRef.current.value);
-        }
+    const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        filter(startDateInput, endDateInput);
     };
 
-    const submitHandler = (e: HTMLFormElement) => {
-        e.preventDefault();
-        console.log(startDateInput, endDateInput);
-    };
     return (
         <div className="rounded-md border bg-slate-700">
             <div className="flex justify-between items-center p-4">

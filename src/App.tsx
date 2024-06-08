@@ -2,11 +2,27 @@ import { SalesChart } from './components/SalesChart';
 import { Statistics } from './components/Statistics';
 import { SalesTable } from './components/SalesTable';
 import { FetchingHook } from './hooks/fetching';
-import { TableHook } from './hooks/table';
+import { useEffect, useState } from 'react';
+import { DataSales } from './types/data/dataTypes';
 
 function App() {
-    const { data, getTopProduct, getTotalRevenue, getTotalSales } = FetchingHook();
-    const { Columns } = TableHook();
+    const { getTopProduct, getTotalRevenue, getTotalSales, data } = FetchingHook();
+    const [getData, setGetData] = useState<DataSales[]>([]);
+
+    const getSalesRange = (start: string, end: string): void => {
+        const startDate = new Date(start).getTime();
+        const endDate = new Date(end).getTime();
+
+        const salesRange = data.filter((item) => {
+            const itemFiltered = new Date(item.date).getTime();
+            return itemFiltered >= startDate && itemFiltered <= endDate;
+        });
+        setGetData(salesRange);
+    };
+
+    useEffect(() => {
+        setGetData(data);
+    }, [data]);
 
     return (
         <div className="flex flex-col gap-y-8 p-6 ">
@@ -33,11 +49,11 @@ function App() {
 
             {/* CHARTS */}
             <div className="flex gap-x-4 justify-between w-full h-48 mx-auto">
-                <SalesChart data={data} type="line" />
+                <SalesChart data={getData} type="line" />
             </div>
 
             {/* TABLE */}
-            <SalesTable columns={Columns} data={data} />
+            <SalesTable filter={getSalesRange} data={getData} />
         </div>
     );
 }
