@@ -1,8 +1,6 @@
-import axios from 'axios';
+import { DataSales } from '@/types/data/dataTypes';
+import axios, { AxiosResponse } from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const jsonServer = 'http://localhost:3000';
 
-export const GET = axios
-    .get(`${apiUrl}sales`)
-    .then((e) => e)
-    .catch((err) => console.log(err));
+export const GET_DATA = () => axios.get(`${jsonServer}/sales`).then((e): AxiosResponse<DataSales[]> => e);

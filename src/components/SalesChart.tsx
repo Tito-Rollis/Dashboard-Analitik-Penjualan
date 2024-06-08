@@ -1,85 +1,12 @@
+import { DataSales } from '@/types/data/dataTypes';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 type SalesChartProps = {
     type: 'line' | 'bar';
+    data: DataSales[];
 };
 
 export const SalesChart = (props: SalesChartProps) => {
-    const data = [
-        {
-            product: 'Product A',
-
-            date: '2023-01-01',
-
-            sales: 150,
-
-            revenue: 25000,
-        },
-        {
-            product: 'Product B',
-
-            date: '2023-01-01',
-
-            sales: 10000,
-
-            revenue: 90000,
-        },
-        {
-            product: 'Product B',
-
-            date: '2023-24-01',
-
-            sales: 150,
-
-            revenue: 30000,
-        },
-        {
-            product: 'Product A',
-
-            date: '2023-30-01',
-
-            sales: 11150,
-
-            revenue: 80000,
-        },
-        {
-            product: 'Product A',
-
-            date: '2023-30-01',
-
-            sales: 11150,
-
-            revenue: 40000,
-        },
-        {
-            product: 'Product A',
-
-            date: '2023-30-01',
-
-            sales: 11150,
-
-            revenue: 80000,
-        },
-        {
-            product: 'Product B',
-
-            date: '2023-30-01',
-
-            sales: 11150,
-
-            revenue: 50000,
-        },
-        {
-            product: 'Product B',
-
-            date: '2023-30-01',
-
-            sales: 11150,
-
-            revenue: 70000,
-        },
-    ];
-
     // interface ConvertData {
     //     date: string;
     //     revenueA: number;
@@ -130,7 +57,7 @@ export const SalesChart = (props: SalesChartProps) => {
 
     return (
         <ResponsiveContainer width="100%" height="80%">
-            <LineChart data={data}>
+            <LineChart data={props.data}>
                 <Line type="monotone" dataKey="sales" stroke="#8884d8" />
                 <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
                 <XAxis dataKey="date" />
