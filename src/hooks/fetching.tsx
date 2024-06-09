@@ -6,7 +6,7 @@ export const FetchingHook = () => {
     const [data, setData] = useState<DataSales[]>([]);
 
     useEffect(() => {
-        GET_DATA().then((res) => setData(res.data.sort((a, b) => a.date.localeCompare(b.date))));
+        GET_DATA().then((res) => setData(res.data));
     }, []);
 
     const getTotalRevenue = (): number => {

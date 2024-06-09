@@ -21,12 +21,17 @@ function App() {
     };
 
     useEffect(() => {
-        setGetData(data);
+        const sortedData = [...data].sort((a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
+            return dateA - dateB;
+        });
+        setGetData(sortedData);
     }, [data]);
 
     return (
-        <div className="flex flex-col gap-y-8 p-6 ">
-            <div className=" flex items-center justify-center gap-x-4 ">
+        <div className="flex flex-col gap-y-8 p-6 w-screen">
+            <div className=" flex flex-col md:flex-row  items-center justify-center gap-4 ">
                 <Statistics
                     textColor="text-green-700"
                     background="bg-green-300"
@@ -48,8 +53,9 @@ function App() {
             </div>
 
             {/* CHARTS */}
-            <div className="flex gap-x-4 justify-between w-full h-48 mx-auto">
+            <div className="flex flex-wrap gap-x-4   gap-y-1 md:justify-center w-full h-fit mx-auto">
                 <SalesChart data={getData} type="line" />
+                <SalesChart data={getData} type="bar" />
             </div>
 
             {/* TABLE */}

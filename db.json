@@ -5,7 +5,7 @@
 
             "product": "Product A",
 
-            "date": "2023-01-01",
+            "date": "2024-01-01",
 
             "sales": 150,
 
@@ -17,32 +17,102 @@
 
             "product": "Product B",
 
-            "date": "2023-01-02",
+            "date": "2024-01-02",
 
             "sales": 100,
 
             "revenue": 2000
         },
         {
-            "product": "Product A",
-            "date": "2023-02-10",
+            "product": "Product F",
+            "date": "2024-04-13",
             "revenue": 50000,
             "sales": 150,
             "id": "3"
         },
         {
-            "product": "Product B",
-            "date": "2023-02-21",
-            "revenue": 100000,
-            "sales": 300,
+            "product": "Product C",
+            "date": "2024-04-13",
+            "revenue": 90000,
+            "sales": 200,
             "id": "4"
         },
         {
-            "product": "Product A",
-            "date": "2023-02-25",
+            "product": "Product Z",
+            "date": "2024-07-03",
+            "revenue": 17000,
+            "sales": 500,
+            "id": "5"
+        },
+        {
+            "product": "Product G",
+            "date": "2024-02-25",
             "revenue": 10000,
             "sales": 250,
-            "id": "5"
+            "id": "6"
+        },
+        {
+            "product": "Product T",
+            "date": "2024-02-25",
+            "revenue": 10000,
+            "sales": 250,
+            "id": "7"
+        },
+        {
+            "product": "Product U",
+            "date": "2024-05-25",
+            "revenue": 5000,
+            "sales": 100,
+            "id": "8"
+        },
+        {
+            "product": "Product Z",
+            "date": "2024-10-25",
+            "revenue": 5000,
+            "sales": 90,
+            "id": "9"
+        },
+        {
+            "product": "Product R",
+            "date": "2024-11-25",
+            "revenue": 2000,
+            "sales": 1000,
+            "id": "10"
+        },
+        {
+            "product": "Product E",
+            "date": "2024-05-25",
+            "revenue": 5000,
+            "sales": 100,
+            "id": "11"
+        },
+        {
+            "product": "Product U",
+            "date": "2024-05-25",
+            "revenue": 5000,
+            "sales": 100,
+            "id": "12"
+        },
+        {
+            "product": "Product W",
+            "date": "2024-01-25",
+            "revenue": 10000,
+            "sales": 900,
+            "id": "13"
+        },
+        {
+            "product": "Product Y",
+            "date": "2024-08-25",
+            "revenue": 5000,
+            "sales": 100,
+            "id": "14"
+        },
+        {
+            "product": "Product U",
+            "date": "2024-05-25",
+            "revenue": 3000,
+            "sales": 100,
+            "id": "15"
         }
     ]
 }

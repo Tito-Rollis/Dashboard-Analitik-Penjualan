@@ -1,4 +1,5 @@
 import { DataSales } from '@/types/data/dataTypes';
+import { DataTableProps } from '@/types/props';
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -7,14 +8,11 @@ import {
     getFilteredRowModel,
     getSortedRowModel,
     useReactTable,
+    getPaginationRowModel,
 } from '@tanstack/react-table';
 import { useRef, useState } from 'react';
 
-export interface DataTableProps<TData> {
-    data: TData[];
-}
-
-export const TableHook = ({ data }: DataTableProps<TData>) => {
+export const TableHook = ({ data }: DataTableProps<DataSales>) => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -34,11 +32,6 @@ export const TableHook = ({ data }: DataTableProps<TData>) => {
             setEndDateInput(endDateInputRef.current.value);
         }
     };
-
-    // const submitHandler = (e: HTMLFormElement) => {
-    //     e.preventDefault();
-    //     console.log(startDateInput, endDateInput);
-    // };
 
     const columns: ColumnDef<DataSales>[] = [
         {
@@ -67,6 +60,7 @@ export const TableHook = ({ data }: DataTableProps<TData>) => {
         getSortedRowModel: getSortedRowModel(),
         onColumnFiltersChange: setColumnFilters,
         getFilteredRowModel: getFilteredRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
         state: {
             sorting,
             columnFilters,
@@ -81,5 +75,6 @@ export const TableHook = ({ data }: DataTableProps<TData>) => {
         table,
         startDateInputRef,
         endDateInputRef,
+        getPaginationRowModel,
     };
 };
